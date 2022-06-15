@@ -119,20 +119,6 @@ export const setStateMonkeyPatching = () => {
 
 }
 
-export const setStateMonkeyPatching = () => {
-    //  Make a copy of the original add function 
-    const originalSetState = React.setState;
-    console.log("tracerUseEffect function called");
-    React.useEffect = function (...args) {
-        console.log("Set state tracing method called ");
-        const tracer = getTracing("example-react-load", AttributeNames.REACT_STATE);
-        tracer.end();
-
-        return originalSetState.apply(React, args);
-    }
-
-}
-
 
 /**
     * unpatch function to unwrap all the lifecycle methods
