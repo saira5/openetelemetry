@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Button } from "reactstrap";
 import { getTracing } from "./commonTracing";
 import { useEffectMonkeyPatching} from "./automation";
-
 useEffectMonkeyPatching();
 
 export default  function Content() {
