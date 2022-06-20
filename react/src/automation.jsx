@@ -4,7 +4,7 @@ import { getTracing } from "./commonTracing";
 import api from "@opentelemetry/api";
 import React from 'react';
 import opentelemetry from "@opentelemetry/api";
-
+const _parentSpanMap = new Map();
 /**Steps to follow
  * start the span 
  * set te parent space by setting the actice context 
@@ -214,12 +214,13 @@ export const _instrumentFunctionn = (react, spanName, parent, original
    * @param react React component parent span belongs to.
    */
    export const _getParentSpan=(react, parentName)=> {
-    // const parentSpan = this._parentSpanMap.get(react);
-    // if (!parentSpan) {
+
+    const parentSpan = _parentSpanMap.get(react);
+    if (!parentSpan) {
       const span = _createSpan(react, parentName);
-    //   this._parentSpanMap.set(react, span);
-    // }
-    return span;
+      _parentSpanMap.set(react, span);
+    }
+    return parentSpan;
   }
 
   
